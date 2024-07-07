@@ -1,0 +1,156 @@
+package com.eyiron.product_app_project.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.eyiron.product_app_project.model.Admin;
+import com.eyiron.product_app_project.model.Product;
+import com.eyiron.product_app_project.model.ProductUsers;
+import com.eyiron.product_app_project.service.AdminService;
+import com.eyiron.product_app_project.service.ProductService;
+import com.eyiron.product_app_project.service.ProductUserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class UserAdminController {
+
+	@Autowired
+	private AdminService service;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private ProductUserService userService;
+
+	// hit fist page login page
+	@GetMapping("/")
+	public String home() {
+		return "loginAdmin";
+	}
+
+	// Admin login
+	@PostMapping("/adminLogin")
+	public RedirectView adminValidation(@RequestParam("email") String email, @RequestParam("password") String password,
+			RedirectView redirectView, Model model, HttpServletRequest request) {
+		Optional<Admin> admin = service.validationService(email, password);
+		if (!admin.isEmpty()) {
+			redirectView.setUrl("homePage");
+			return redirectView;
+		}else {
+			model.addAttribute("msg", "Please check email & password");
+			redirectView.setUrl("");
+			return redirectView;
+		}
+		
+
+	}
+
+	// open add prduct page
+	@RequestMapping("/addProduct")
+	public String addProduct(Model model) {
+		return "add_product";
+	}
+	
+	// logout page
+	@GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "loginAdmin";
+    }
+	
+	//add new user
+	@GetMapping("/addNewUser")
+	public String addNewUser() {
+		return "addNewUser";
+	}
+	
+//	save user
+	@PostMapping("/saveUser")
+	public RedirectView saveUser(@ModelAttribute ProductUsers user,Model model) {
+		userService.saveUser(user);
+		RedirectView redirectView=new RedirectView();
+		model.addAttribute("msg", "true");
+		redirectView.setUrl("listAllUsers");
+		return redirectView;
+	}
+	
+//	user loging
+	
+	@GetMapping("/userLogin")
+	public String userLogin() {
+		return "userLogin";
+	}
+	
+	@PostMapping("/userHomePage")
+	public String userValidation(@RequestParam("email") String email, @RequestParam("password") String password,
+			RedirectView redirectView, Model model, HttpServletRequest request) {
+		List<ProductUsers> productUsers=userService.validationService(email, password);
+		if(!productUsers.isEmpty()) {
+			List<Product> products=productService.getAllProduct();
+			System.out.println(products);
+			model.addAttribute("product", products);
+			
+			return "userProductPage";
+		}else {
+			redirectView.setUrl("");
+			return "userLogin";
+		}
+		
+		
+	}
+	
+	
+	@GetMapping("/userProductPage")
+	public String userhomePage(Model model) {
+		List<Product> products=productService.getAllProduct();
+		System.out.println(products);
+		model.addAttribute("product", products);
+		return "userProductPage";
+		
+	}
+	
+	@PostMapping("/handleUserProduct")
+	public RedirectView handleUserProduct(@ModelAttribute Product product) {
+		System.out.println("this is handle user product page");
+		productService.saveProductService(product);
+		RedirectView redirectView=new RedirectView();
+		redirectView.setUrl("userProductPage");
+		return redirectView;
+	}
+	
+	@RequestMapping("/addUserProduct")
+	public String addUserProduct(Model model) {
+		return "addUserProduct";
+	}
+	
+	@GetMapping("/listAllUsers")
+	public String listAllUsers(Model model) {
+	   List<ProductUsers> users= userService.getAllUsers();
+	   model.addAttribute("users", users);
+		return "listAllUsers";
+	}
+	
+	@GetMapping("/remove/{id}")
+	public RedirectView remove(@PathVariable("id") int id,HttpServletRequest request) {
+		userService.deleteByIdService(id);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl(request.getContextPath()+"/listAllUsers");
+		return redirectView;
+		
+	}
+	
+}

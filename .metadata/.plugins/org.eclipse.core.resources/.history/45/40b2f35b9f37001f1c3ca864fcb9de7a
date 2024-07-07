@@ -1,0 +1,18 @@
+package com.eyiron.product_app_project.dao;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.eyiron.product_app_project.model.ProductUsers;
+
+@Repository
+public interface ProductUsersRepo extends JpaRepository<ProductUsers, Integer> {
+	
+	@Query("select  from ProductUsers a where a.email=:e and a.password=:p")
+	public Optional<ProductUsers> getByEmailAndPassword(@Param("e") String email,@Param("p") String Password);
+
+}

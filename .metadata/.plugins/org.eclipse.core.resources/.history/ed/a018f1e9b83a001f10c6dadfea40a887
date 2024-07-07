@@ -1,0 +1,22 @@
+package com.yiron.first_thymeleaf_Project.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class MainController {
+	
+	@GetMapping("/test")
+	public String test(Model model) {
+		System.out.println("this is test controller");
+//		model.addAttribute("name" ,"Raka Yadav");
+//		List<String> lists=List.of("raka","ranjeet","saurabh","vikash","shivam","prience","shubham");
+//		model.addAttribute("lists", lists);
+		
+		return "testPage";
+	}
+
+}

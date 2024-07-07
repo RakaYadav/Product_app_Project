@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\rakay\Dropbox\PC\Downloads\first_thymeleaf_Project"/>
+			<item value="D:\yiron_spring_boot\product_app_project"/>
+			<item value="C:\Users\rakay\Dropbox\PC\Downloads\frist_restfull_api"/>
+			<item value="C:\Users\rakay\Dropbox\PC\Downloads\first_project"/>
+			<item value="D:\yiron_spring_boot\first_project"/>
+			<item value="D:\yiron_spring_boot"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

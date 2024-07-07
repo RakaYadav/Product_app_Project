@@ -1,0 +1,67 @@
+package com.eyiron.product_app_project.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eyiron.product_app_project.dao.ProductUsersRepo;
+import com.eyiron.product_app_project.model.ProductUsers;
+
+@Service
+public class ProductUserService {
+
+	@Autowired
+	private ProductUsersRepo usersRepo;
+
+//	save user details
+	public void saveUser(ProductUsers user) {
+		usersRepo.save(user);
+	}
+
+//	validation user email password
+	@SuppressWarnings("unused")
+	public ProductUsers validationService(String email, String password) {
+		ProductUsers productUsers = usersRepo.findByEmailAndPassword(email, password);
+		if (productUsers != null) {
+			String str = "Active";
+			if (productUsers.getStatus().equals(str)) {
+				return productUsers;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
+//	get all user
+	public List<ProductUsers> getAllUsers() {
+		return usersRepo.findAll();
+	}
+
+//	user delete by id
+	public void deleteByIdService(int id) {
+		usersRepo.deleteById(id);
+	}
+
+//	get by id user details
+	public Optional<ProductUsers> getByIdUserService(int id) {
+		return usersRepo.findById(id);
+	}
+
+//	save updated users details
+	public void updateStatusUserService(int id, ProductUsers productUsers) {
+		Optional<ProductUsers> user = usersRepo.findById(id);
+		ProductUsers user1 = user.get();
+		user1.setId(productUsers.getId());
+		user1.setName(productUsers.getName());
+		user1.setEmail(productUsers.getEmail());
+		user1.setPhone(productUsers.getPhone());
+		user1.setStatus(productUsers.getStatus());
+		usersRepo.save(user1);
+
+	}
+
+}

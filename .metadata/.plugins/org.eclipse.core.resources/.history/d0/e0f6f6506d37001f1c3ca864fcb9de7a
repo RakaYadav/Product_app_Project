@@ -1,0 +1,46 @@
+package com.eyiron.product_app_project.service;
+
+import java.lang.StackWalker.Option;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eyiron.product_app_project.dao.ProductRepo;
+import com.eyiron.product_app_project.model.Product;
+
+@Service
+public class ProductService {
+	
+	@Autowired
+	private ProductRepo productRepo;
+	
+	//save all product details
+	public void saveProductService(Product product) {
+		productRepo.save(product);
+		
+	}
+	
+	
+//	find all product details
+	public List<Product> getAllProduct(){
+		return productRepo.findAll();
+	}
+	
+	public void updateProductService(int id,Product product) {
+		Optional<Product> optional =productRepo.findById(id);
+		if(optional.isPresent()) {
+			productRepo.save(product);
+		}
+	}
+	
+	public Optional<Product> getByIdService(int id){
+		return  productRepo.findById(id);
+	}
+	
+	
+
+
+
+}

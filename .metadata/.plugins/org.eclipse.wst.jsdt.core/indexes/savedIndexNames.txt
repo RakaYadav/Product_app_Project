@@ -1,0 +1,11 @@
+INDEX VERSION 1.4+D:\yiron_spring_boot\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2653972729.index
+1658838994.index
+4050635692.index
+3172248198.index
+2649109123.index
+3335543222.index
+1976835387.index
+2874006144.index
+6249914.index
+1104016851.index

@@ -1,0 +1,32 @@
+package com.eyiron.product_app_project.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eyiron.product_app_project.dao.ProductUsersRepo;
+import com.eyiron.product_app_project.model.Admin;
+import com.eyiron.product_app_project.model.ProductUsers;
+
+@Service
+public class ProductUserService {
+	
+	@Autowired
+	private ProductUsersRepo usersRepo;
+	
+	
+	public void saveUser(ProductUsers user) {
+		usersRepo.save(user);
+	}
+	
+	public boolean validationService(String email,String password) {
+		ProductUsers productUsers=new ProductUsers();
+		if(email.equals(productUsers.getEmail())&&password.equals(productUsers.getEmail())) {
+		return true;
+		}else {
+			return false;
+		}
+	}
+
+}

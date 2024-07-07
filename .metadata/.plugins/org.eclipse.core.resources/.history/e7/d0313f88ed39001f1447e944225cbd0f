@@ -1,0 +1,5 @@
+package com.yiron.first_thymeleaf_Project.controller;
+
+public class MainController {
+
+}

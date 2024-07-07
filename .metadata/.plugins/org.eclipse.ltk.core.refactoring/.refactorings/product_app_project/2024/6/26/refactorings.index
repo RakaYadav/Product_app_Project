@@ -1,0 +1,25 @@
+1719470016056	Rename resource 'viwes'
+1719484577491	Delete element
+1719490610498	Move 'adminLogin.jsp' to 'templates'
+1719490624950	Move 'base.jsp' to 'templates'
+1719491323597	Move 'adminLogin.jsp' to 'views'
+1719491328875	Move 'base.jsp' to 'views'
+1719491979970	Move 'views' to 'webapp'
+1719491990024	Delete element
+1719493936656	Delete element
+1719493944428	Delete element
+1719493954785	Delete element
+1719550047029	Rename package 'com.eyiron.product_app_project.dao'
+1719550066422	Delete elements
+1719550955550	Rename type 'User'
+1719551088696	Delete element
+1719551102858	Delete element
+1719551125378	Delete element
+1719551167282	Delete element
+1719552622172	Delete element
+1719552753021	Rename type 'Amin'
+1719553022015	Delete element
+1719553032966	Delete element
+1719553348934	Rename type 'UserController'
+1719554353210	Rename type 'UserAdminService'
+1719568428457	Rename resource 'welecome.jsp'

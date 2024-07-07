@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>This is my first thymeleaf page</h1>
+	<h2 th:text="${name}" ></h2>
+	<ul>
+	
+	<li th:each="a:${lists}">
+	<span th:text="${a}"></span></li>
+	
+	</ul>
+</body>
+</html>
